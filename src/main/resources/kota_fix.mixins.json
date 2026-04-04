@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "com.mervyn.kotafix.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "LivingEntityEventsMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
