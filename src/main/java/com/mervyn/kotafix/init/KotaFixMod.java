@@ -76,7 +76,7 @@ public class KotaFixMod implements ModInitializer {
         private final double x, y, z;
         private final int knowledge;
         private int totalItems;
-        private int ticksLeft = 4; // Wait 2 ticks to ensure all mods have finished spawning loot
+        private int ticksLeft = 4; // Wait 4 ticks to ensure all mods have finished spawning loot
 
         public PendingXpConversion(ServerWorld world, double x, double y, double z, int knowledge, int initialCount) {
             this.world = world;
