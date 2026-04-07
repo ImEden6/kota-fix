@@ -17,6 +17,7 @@
 		]
 	},
 	"mixins": [
+		"kota_fix.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.15.10",

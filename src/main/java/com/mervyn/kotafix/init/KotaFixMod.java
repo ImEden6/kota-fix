@@ -68,7 +68,7 @@ public class KotaFixMod implements ModInitializer {
                 }
             }
         }
-        return false;
+        return true;
     }
 
     private static class PendingXpConversion {
@@ -76,7 +76,7 @@ public class KotaFixMod implements ModInitializer {
         private final double x, y, z;
         private final int knowledge;
         private int totalItems;
-        private int ticksLeft = 2; // Wait 2 ticks to ensure all mods have finished spawning loot
+        private int ticksLeft = 4; // Wait 2 ticks to ensure all mods have finished spawning loot
 
         public PendingXpConversion(ServerWorld world, double x, double y, double z, int knowledge, int initialCount) {
             this.world = world;
@@ -91,8 +91,8 @@ public class KotaFixMod implements ModInitializer {
             if (--ticksLeft > 0) return false;
 
             // Scan 1 block around death location for dropped items
-            Box area = new Box(x - 1.0, y - 1.0, z - 1.0, x + 1.0, y + 1.0, z + 1.0);
-            List<ItemEntity> items = world.getEntitiesByClass(ItemEntity.class, area, e -> true);
+            Box area = new Box(x - 2.0, y - 2.0, z - 2.0, x + 2.0, y + 2.0, z + 2.0);
+            List<ItemEntity> items = world.getEntitiesByClass(ItemEntity.class, area, e -> !e.isRemoved());
             
             for (ItemEntity item : items) {
                 totalItems += item.getStack().getCount();
