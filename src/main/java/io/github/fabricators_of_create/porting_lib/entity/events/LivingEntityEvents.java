@@ -1,15 +1,22 @@
 package io.github.fabricators_of_create.porting_lib.entity.events;
 
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ItemEntity;
-import java.util.Collection;
 import net.fabricmc.fabric.api.event.Event;
+import java.util.Collection;
 
+/**
+ * Compile-time stub for Porting Lib's LivingEntityEvents.
+ * Used to avoid heavyweight dependencies during compilation.
+ * Uses Object for Minecraft classes to avoid mapping-specific compilation errors.
+ */
 public abstract class LivingEntityEvents {
-    public static final Event<Drops> DROPS = null;
+    public static Event<Drops> DROPS;
+    public static Event<ExperienceDrop> EXPERIENCE_DROP;
 
     public interface Drops {
-        boolean onLivingEntityDrops(LivingEntity target, DamageSource source, Collection<ItemEntity> drops, int lootingLevel, boolean recentlyHit);
+        boolean onLivingEntityDrops(Object target, Object source, Collection<?> drops, int lootingLevel, boolean recentlyHit);
+    }
+
+    public interface ExperienceDrop {
+        int onLivingEntityExperienceDrop(int i, Object attackingPlayer, Object entity);
     }
 }

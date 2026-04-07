@@ -3,7 +3,8 @@
   "package": "com.mervyn.kotafix.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "LivingEntityEventsMixin"
+    "LivingEntityEventsMixin",
+    "KotaLivingEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
