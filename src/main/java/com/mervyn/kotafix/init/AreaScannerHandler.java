@@ -18,6 +18,7 @@ import java.util.Collection;
 public class AreaScannerHandler {
 
     private static Enchantment KNOWLEDGE_ENCHANTMENT = null;
+    private static boolean HAS_SEARCHED_ENCHANTMENT = false;
 
     public static void init() {
         LivingEntityEvents.DROPS.register((target, source, drops, lootingLevel, recentlyHit) -> 
@@ -71,6 +72,11 @@ public class AreaScannerHandler {
             world.spawnEntity(new ExperienceOrbEntity(world, target.getX(), target.getY(), target.getZ(), orbValue));
         }
 
+        if (KotaFixMod.LOGGER.isDebugEnabled()) {
+            KotaFixMod.LOGGER.debug("[KOTA FIX] Converted {} items into XP targeting {} at {}, {}, {}", 
+                    totalItems, target.getName().getString(), target.getX(), target.getY(), target.getZ());
+        }
+
         return true;
     }
 
@@ -92,7 +98,8 @@ public class AreaScannerHandler {
     }
 
     private static int getKnowledgeLevel(PlayerEntity player) {
-        if (KNOWLEDGE_ENCHANTMENT == null) {
+        if (KNOWLEDGE_ENCHANTMENT == null && !HAS_SEARCHED_ENCHANTMENT) {
+            HAS_SEARCHED_ENCHANTMENT = true;
             // Try to find the enchantment in the registry
             KNOWLEDGE_ENCHANTMENT = Registries.ENCHANTMENT.get(new Identifier("zenith", "knowledge"));
             if (KNOWLEDGE_ENCHANTMENT == null) {
