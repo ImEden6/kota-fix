@@ -9,6 +9,7 @@ public class KotaFixMod implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        LOGGER.info("KOTA Fix initialized: Design flaw in porting_lib event system has been patched via Mixin.");
+        AreaScannerHandler.init();
+        LOGGER.info("KOTA Fix initialized: Area Scanner for Zenith Knowledge active. Player deaths protected.");
     }
 }
